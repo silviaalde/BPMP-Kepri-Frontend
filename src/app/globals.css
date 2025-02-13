@@ -1,0 +1,114 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Di globals.css atau file css kamu */
+.text-underline {
+    position: relative;
+    transition: color 0.4s ease; /* Animasi transisi untuk warna teks */
+}
+  
+.text-underline::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;  /* Ketebalan garis outline */
+    background-color: black;  /* Warna outline default */
+    transition: width 0.3s ease, background-color 0.3s ease; 
+}
+.text-underline:hover {
+    @apply text-white;
+}
+
+.text-underline:hover::before {
+    @apply w-full bg-white;
+}
+.footer-text-underline {
+    @apply absolute bottom-0 left-0 w-0 h-[1px] bg-[#7CD4FD] group-hover:w-full transition-all duration-300;
+}
+.container {
+    @apply w-[90%] max-w-[1300px];
+}
+.center-flex {
+    @apply flex items-center justify-center;
+}
+
+.section-line {
+    @apply w-14 h-1 bg-blue-light;
+}
+.section-title {
+    @apply text-blue-light font-medium;
+}
+.section-heading {
+    @apply text-5xl text-blue-secondary font-semibold tracking-wider;
+}
+
+
+.fade-in-from-bottom {
+    opacity: 0; /* Mulai dengan opacity 0 (tidak terlihat) */
+    transform: translateY(30px); /* Mulai dengan posisi sedikit di bawah */
+    animation: fadeInFromBottom 2s forwards; /* Animasi selama 2 detik */
+  }
+  
+  /* Keyframes untuk fade-in dengan gerakan dari bawah */
+@keyframes fadeInFromBottom {
+    to {
+        opacity: 1; /* Akhirnya opacity menjadi 1 (terlihat sepenuhnya) */
+        transform: translateY(0); /* Posisinya kembali ke tempat semula */
+    }
+}
+
+.fade-in-from-left {
+    opacity: 0; /* Mulai dengan opacity 0 (tidak terlihat) */
+    transform: translateX(-80px); /* Mulai dengan posisi sedikit di kiri */
+    animation: fadeInFromLeft 3s forwards; /* Animasi selama 2 detik */
+}
+
+/* Keyframes untuk fade-in dengan gerakan dari kiri */
+@keyframes fadeInFromLeft {
+    to {
+        opacity: 1; /* Akhirnya opacity menjadi 1 (terlihat sepenuhnya) */
+        transform: translateX(0); /* Posisinya kembali ke tempat semula */
+    }
+}
+
+/* styles/globals.css */
+@keyframes zoomEffect {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.1);
+    }
+}
+  
+.zoom-animation {
+    animation: zoomEffect 4s ease-in-out;
+}
+
+
+@keyframes fadeInText {
+    0% {
+      opacity: 0;
+      transform: translateY(30px); /* Mulai dari bawah */
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0); /* Normal posisi */
+    }
+}
+  
+  /* Terapkan animasi pada teks */
+.text-animation {
+    animation: fadeInText 4s ease-in-out;
+}
+.heading-animation {
+    animation: fadeInText 5s ease-in-out;
+}
+.btn-animation {
+    animation: fadeInText 6s ease-in-out;
+}
+
+
