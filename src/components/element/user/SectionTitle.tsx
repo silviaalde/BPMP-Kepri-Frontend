@@ -1,6 +1,7 @@
 interface SectionTitleProps {
     title: string;
     heading: string;
+    useLine? : boolean;
     titleClassName?: string;  // Optional class for the title
     headingClassName?: string;  // Optional class for the heading
     containerClassName?: string; // Optional class for the container
@@ -10,6 +11,7 @@ interface SectionTitleProps {
 const SectionTitle = ({
     title,
     heading,
+    useLine = true,
     titleClassName = '',   // Default to empty string if not provided
     headingClassName = '', // Default to empty string if not provided
     containerClassName = '', // Default to empty string if not provided
@@ -17,7 +19,7 @@ const SectionTitle = ({
 }: SectionTitleProps) => {
     return (
         <div className={`flex flex-col gap-3 ${alignItems} ${containerClassName}`}>
-            <div className="section-line"></div>
+            { useLine ?<div className="section-line"></div> : <div></div>}
             <p className={`section-title uppercase ${titleClassName}`}>{title}</p>
             <h1 className={`text-3xl md:text-5xl text-blue-secondary font-semibold tracking-wider uppercase ${headingClassName}`}>
                 {heading}

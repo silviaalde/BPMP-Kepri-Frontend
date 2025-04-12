@@ -1,4 +1,4 @@
-import { FaBullhorn, FaCheckCircle, FaDownload, FaHome, FaQuestionCircle,  } from "react-icons/fa";
+import { FaBullhorn, FaComment, FaCheckCircle, FaDownload, FaHome, FaQuestionCircle, FaVideo  } from "react-icons/fa";
 
 export const DataMenuAdmin = [
     {
@@ -38,6 +38,18 @@ export const DataMenuAdmin = [
         title : "Unduhan",
         url : "/admin/unduhan",
         icon :  FaDownload,
+        type : 'menu'
+    },
+    {
+        title : "Webinar",
+        url : "/admin/webinar",
+        icon :  FaVideo,
+        type : 'menu'
+    },
+    {
+        title : "Testimoni",
+        url : "/admin/testimoni",
+        icon :  FaComment,
         type : 'menu'
     },
     {

@@ -1,4 +1,3 @@
-import { StaticImageData } from "next/image";
 import { FaArrowRight, FaClock } from "react-icons/fa";
 import { FaLocationPin } from "react-icons/fa6";
 import Image  from "next/image";
@@ -9,7 +8,9 @@ interface PropsCard {
     time : string;
     title : string;
     location : string;
-    image : StaticImageData;
+    image : string;
+    description : string;
+    url : string
 }
 
 
@@ -19,7 +20,9 @@ const CardWebinar = ({
     time,
     title,
     location,
-    image
+    image,
+    description,
+    url
 } : PropsCard) => {
     return (
         <div className="h-max md:h-[200px] w-full bg-gray-100 hover:bg-white hover:shadow-lg cursor-pointer flex items-start md:items-center md:flex-row flex-col gap-5 py-8 md:py-4  px-8">
@@ -28,7 +31,7 @@ const CardWebinar = ({
                 <p>{date}</p>
                 <p>{month}</p>
             </div>
-            <Image src={image} className="w-36 h-36 rounded-full object-cover" alt="Image Zoom 1" />
+            <Image src={image} width={640} height={480} className="w-36 h-36 rounded-full object-cover" alt="Image Zoom 1" />
             </div>
             <div className="h-full flex flex-1 flex-col gap-5 justify-center">
             <div className="flex flex-col  gap-2 ">
@@ -42,8 +45,9 @@ const CardWebinar = ({
                 </div>
             </div>
             <h3 className="uppercase text-blue-secondary text-3xl font-semibold">{title}</h3>
+            <p className="-mt-4">{description}</p>
             <div className="flex items-center gap-2">
-                <a href="" className="hover:underline hover:text-blue-light underline font-medium">View Event</a>
+                <a href={url} className="hover:underline hover:text-blue-light underline font-medium">View Event</a>
                 <FaArrowRight className="text-sm" />
             </div>
             </div>

@@ -17,117 +17,107 @@ export const programList : ProgramList[] = [
     services : [
       {
         id : 1,
-        service_name : "Informasi Merdeka Belajar",
-        link : "https://merdekabelajar.kemdikbud.go.id/"
-      },
-      {
-        id : 2,
-        service_name : "Akun Belajar",
-        link : "https://belajar.id/"
-      },
-      {
-        id : 3,
-        service_name : "Merdeka Mengajar",
-        link : "https://guru.kemdikbud.go.id/"
-      },
-      {
-        id : 4,
-        service_name : "Rapor Pendidikan",
-        link : "https://raporpendidikan.kemdikbud.go.id/login"
-      },
-      {
-        id : 5,
-        service_name : "ARKAS",
-        link : "https://arkas.kemdikbud.go.id/"
-      },
-      {
-        id : 6,
-        service_name : "SIPLah",
-        link : "https://siplah.kemdikbud.go.id/"
-      },
-      {
-        id : 7,
-        service_name : "TanyaBOS",
-        link : "https://tanyabos.kemdikbud.go.id/"
-      },
-      {
-        id : 8,
-        service_name : "Kampus Merdeka",
-        link : "https://kampusmerdeka.kemdikbud.go.id/"
-      },
-      {
-        id : 9,
         service_name : "7 Kebiasaan Anak Indonesia Hebat",
         link : "https://cerdasberkarakter.kemdikbud.go.id/gerakan7kebiasaan/"
       },
       {
-        id : 10,
-        service_name : "Wiyata Kinerja Merdeka Belajar",
-        link : "https://wkmb.kemdikbud.go.id/"
-      },
-      {
-        id : 11,
-        service_name : "Sistem Informasi Perbukuan Indonesia",
-        link : "https://buku.kemdikbud.go.id/"
-      }
-    ]
-  },
-  {
-    id : 2,
-    name : "ePPID",
-    services : [
-      {
-        id : 1,
-        service_name : "Daftar Informasi Publik",
-        link : "https://ppid.kemdikbud.go.id/page/daftar-informasi-publik"
-      },
-      {
         id : 2,
-        service_name : "e-PPID (Pejabat Pengelola Informasi & Dokumentasi)",
-        link : "http://ppid.kemdikbud.go.id/"
+        service_name : "Program Makan Gratis",
+        link : "#"
       },
       {
         id : 3,
-        service_name : "ePPID (Android)",
-        link : "https://play.google.com/store/apps/details?id=com.dera.perman.ppidkemendikbudristek"
+        service_name : "Program Pembangunan dan Revitalisasi Satuan Pendidikan",
+        link : "#"
       },
       {
         id : 4,
-        service_name : "Maklumat Pelayanan Informasi Publik",
-        link : "https://ppid.kemdikbud.go.id/page/maklumat-pelayanan-informasi-publik"
+        service_name : "Digitalisasi Sekolah",
+        link : "#"
       },
       {
         id : 5,
-        service_name : "Permohonan Informasi Publik",
-        link : "https://kemdikbud.lapor.go.id/"
+        service_name : "Pembelajaran Mendalam (Deep Learning)",
+        link : "#"
       },
       {
         id : 6,
-        service_name : "Prosedur Pengajuan Keberatan Informasi Publik",
-        link : "https://ppid.kemdikbud.go.id/page/prosedur-pengajuan-keberatan-atas-permohonan-informasi-publik"
+        service_name : "Sekolah Model Transformatif",
+        link : "#"
       },
       {
         id : 7,
-        service_name : "Prosedur Penyelesaian Sengketa Informasi",
-        link : "https://ppid.kemdikbud.go.id/page/prosedur-penyelesaian-sengketa-informasi-publik"
+        service_name : "Penguatan Bimbingan Konseling di Sekolah",
+        link : "#"
       },
       {
         id : 8,
-        service_name : "Prosedur Permohonan Informasi Publik",
-        link : "https://ppid.kemdikbud.go.id/page/prosedur-permohonan-informasi-publik"
+        service_name : "Wajib Belajar 13 Tahun",
+        link : "#"
       },
       {
         id : 9,
-        service_name : "Regulasi Keterbukaan Informasi Publik",
-        link : "https://ppid.kemdikbud.go.id/page/regulasi-keterbukaan-informasi-publik"
-      },
-      {
-        id : 10,
-        service_name : "Rekap Jumlah Pemohon Informasi Publik",
-        link : "https://ppid.kemdikbud.go.id/page/rekapitulasi-permohonan-informasi-publik"
+        service_name : "Ketercukupan dan Kelayakan Pendidik dan Tenaga Kependidikan",
+        link : "#"
       }
     ]
   },
+  // {
+  //   id : 2,
+  //   name : "ePPID",
+  //   services : [
+  //     {
+  //       id : 1,
+  //       service_name : "Daftar Informasi Publik",
+  //       link : "https://ppid.kemdikbud.go.id/page/daftar-informasi-publik"
+  //     },
+  //     {
+  //       id : 2,
+  //       service_name : "e-PPID (Pejabat Pengelola Informasi & Dokumentasi)",
+  //       link : "http://ppid.kemdikbud.go.id/"
+  //     },
+  //     {
+  //       id : 3,
+  //       service_name : "ePPID (Android)",
+  //       link : "https://play.google.com/store/apps/details?id=com.dera.perman.ppidkemendikbudristek"
+  //     },
+  //     {
+  //       id : 4,
+  //       service_name : "Maklumat Pelayanan Informasi Publik",
+  //       link : "https://ppid.kemdikbud.go.id/page/maklumat-pelayanan-informasi-publik"
+  //     },
+  //     {
+  //       id : 5,
+  //       service_name : "Permohonan Informasi Publik",
+  //       link : "https://kemdikbud.lapor.go.id/"
+  //     },
+  //     {
+  //       id : 6,
+  //       service_name : "Prosedur Pengajuan Keberatan Informasi Publik",
+  //       link : "https://ppid.kemdikbud.go.id/page/prosedur-pengajuan-keberatan-atas-permohonan-informasi-publik"
+  //     },
+  //     {
+  //       id : 7,
+  //       service_name : "Prosedur Penyelesaian Sengketa Informasi",
+  //       link : "https://ppid.kemdikbud.go.id/page/prosedur-penyelesaian-sengketa-informasi-publik"
+  //     },
+  //     {
+  //       id : 8,
+  //       service_name : "Prosedur Permohonan Informasi Publik",
+  //       link : "https://ppid.kemdikbud.go.id/page/prosedur-permohonan-informasi-publik"
+  //     },
+  //     {
+  //       id : 9,
+  //       service_name : "Regulasi Keterbukaan Informasi Publik",
+  //       link : "https://ppid.kemdikbud.go.id/page/regulasi-keterbukaan-informasi-publik"
+  //     },
+  //     {
+  //       id : 10,
+  //       service_name : "Rekap Jumlah Pemohon Informasi Publik",
+  //       link : "https://ppid.kemdikbud.go.id/page/rekapitulasi-permohonan-informasi-publik"
+  //     }
+  //   ]
+  // },
   {
     id : 3,
     name : "Siswa & Mahasiswa",

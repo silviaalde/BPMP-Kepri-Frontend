@@ -3,10 +3,11 @@
 import {  FaBars, FaFacebook, FaGlobe, FaInstagram, FaPaperPlane, FaPhone, FaTwitter, FaYoutube } from 'react-icons/fa';
 import { FiMail } from 'react-icons/fi';
 import Image from 'next/image';
-import { IconsChevronDouble, Logo } from '@/assets/icons';
+import { IconsChevronDouble } from '@/assets/icons';
 import Link from 'next/link';
 import NavMenu from './NavMenu';
 import SocialLink from '../SocialLink';
+import { BPMPLogo } from '@/assets/images';
 import { useEffect, useState } from 'react';
 import SidebarModal from '../sidebar/SidebarModals';
 import { ImageBanner1 } from '@/assets/images';
@@ -59,23 +60,10 @@ const Navbar = () => {
                 <div className="flex items-center w-full h-full gap-4 text-white relative">
                     
                     {/* Nav Logo */}
-                    <div className='flex items-center justify-between h-20 lg:h-28  w-full lg:w-max bg-blue-secondary flex-shrink-0 px-3'>
-                        <div className=' flex items-center justify-start gap-2 md:gap-1  py-4 '>
-                            <Image 
-                                src={Logo}
-                                alt='logo tut wuri handayani'
-                                className='h-8 w-8'
-                            />
-                            <div className='flex flex-col'>
-                                <p className='text-3xl md:text-lg font-bold' style={{ letterSpacing: '4px' }}>BPMP</p>
-                                <p className='text-[6px] md:text-[4px]'>BALAI PENJAMINAN MUTU PENDIDIKAN</p>
-                            </div>
-                            <div className='md:h-7 h-10 w-[2px] bg-white rounded-full'></div>
-                            <div className='flex flex-col text-sm md:text-[10px]'>
-                                <p>Provinsi</p>
-                                <p>Kepulauan Riau</p>
-                            </div>
-                        </div>
+                    <div className='flex items-center justify-between h-20 lg:h-28  w-full lg:w-max flex-shrink-0 px-3'>
+                        <Link href="/" className=' flex items-center justify-start gap-2 md:gap-1  py-4 '>
+                           <Image src={BPMPLogo} alt='logo' className='w-[12rem]'></Image>
+                        </Link>
                         {/* Trigger sidebar menu */}
                         <FaBars 
                             className='text-xl cursor-pointer lg:hidden flex' 
@@ -109,7 +97,7 @@ const Navbar = () => {
                     </div>
 
                     {/* Menu Section */}
-                    <div className="hidden lg:flex flex-wrap items-center gap-3 text-blue-primary font-medium py-2 ">
+                    <div className="hidden lg:flex flex-wrap items-center gap-8 text-blue-primary font-medium py-2 ">
                         {MenuUtama.map((item, index) => (
                             <NavMenu key={index} {...item} />
                         ))}

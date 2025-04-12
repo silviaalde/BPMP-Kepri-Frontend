@@ -1,37 +1,38 @@
 "use client" ;
 
-import React, {  useState } from "react";
+import React, {  useEffect, useState } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
-
+import { Blog } from "@/services/api";
 // Import your image
 import { ImageBanner1, ImageBanner2, ImageBanner3, ImageBanner4 } from "@/assets/images";
+import { storageUrl } from "@/services/api";
 
 const Banners = [
     { 
-        img : ImageBanner1, 
+        image : ImageBanner1, 
         title : "BPMP provinsi Kepulauan Riau Sebagai Mitra Strategis Pemda Mendapatkan", 
         heading : "Apresiasi Gubernur Kepulauan Riau", 
         url : "/"
     },
     { 
-        img : ImageBanner2, 
+        image : ImageBanner2, 
         title : "Kepulauan Riau raih penghargaan terbanyak pada", 
         heading : "Anugerah merdeka belajar 2024", 
         url : "/"
     },
     { 
-        img : ImageBanner3, 
+        image : ImageBanner3, 
         title : "Penandatanganan fakta integritas dan dukungan", 
         heading : "Perlaksanaan PPDB TA 2024 / 2025", 
         url : "/"
     },
     { 
-        img : ImageBanner4, 
+        image : ImageBanner4, 
         title : "Gubernur Kepulauan Riau Apresiasi Peraihan Penghargaan", 
         heading : "AMB 2024 KEMENDIKBUDRISTEK", 
         url : "/"
@@ -40,6 +41,15 @@ const Banners = [
 
 const BannerSlider = () => {
     const [activeIndex, setActiveIndex] = useState(0);
+    const [banner, setBanner] = useState<{image?:string, title? : string, heading? : string, url? : string}[]>([]);
+
+    useEffect(()=>{
+        Blog.GetBerita({limit : 3}).then((response)=>{
+            if(response.status == 200){
+                setBanner(response.data.data);
+            }
+        });
+    },[]);
 
     return (
         <div className="w-full h-[400px] sm:h-[400px] md:h-[500px] xl:h-[700px]">
@@ -56,12 +66,14 @@ const BannerSlider = () => {
                 modules={[Navigation, Pagination, Autoplay]}
                 onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)} // Update active index
             >
-            {Banners.map((items, index) => (
+            {(banner && banner.length ?banner:Banners).map((items, index) => (
                 <SwiperSlide key={index}>
                     <div className="w-full h-full relative overflow-hidden ">
                         {/* Gambar */}
                         <Image
-                            src={items.img}
+                            src={items.image?( typeof items.image === "string"?`${storageUrl}${items.image}`: items.image): "/base.png"}
+                            width={1720}
+                            height={1080}
                             alt={`Banner ${index + 1}`}
                             className={`h-[400px] sm:h-[400px] md:h-[500px] xl:h-[700px] w-full object-cover`}
                             style={{
@@ -75,11 +87,8 @@ const BannerSlider = () => {
                         {/* Teks di Tengah dengan animasi */}
                         <div className="absolute inset-0 center-flex w-full text-white">
                             <div className="container flex flex-col gap-4">
-                            <p className="uppercase font-medium text-animation">
-                                {items.title}
-                            </p>
                             <h2 className="text-3xl md:text-7xl font-semibold shadow-md uppercase heading-animation">
-                                {items.heading}
+                                {items.title}
                             </h2>
                             <button className="h-14 w-52 bg-yellow-400 text-sm font-medium mt-2 btn-animation">
                                 Baca Selengkapnya

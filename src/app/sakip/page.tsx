@@ -29,11 +29,11 @@ const Page = () => {
                     </div>
 
                     <div className="flex items-center gap-5">
-                        <Link href="/sakip/realisasi-anggaran-program-kualitas">
+                        {/* <Link href="/sakip/realisasi-anggaran-program-kualitas">
                             <button className="px-5 h-14 bg-blue-secondary text-white hover:opacity-45 font-medium">
                                 Lihat Realisasi Anggaran Program Kualitas
                             </button>
-                        </Link>
+                        </Link> */}
                         <Link href="/sakip/doc">
                             <button className="px-5 h-14 bg-blue-secondary text-white hover:opacity-45 font-medium">
                                 Unduh Document Sakip

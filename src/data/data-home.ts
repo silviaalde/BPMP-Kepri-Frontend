@@ -1,5 +1,5 @@
 import { IconsGovernment, IconsSchool, IconsStudent, IconsTeacher } from "@/assets/icons";
-import { ImageBerita1, ImageBerita2, ImageBerita3, ImageFasilitas1, ImageFasilitas2, ImageFasilitas3, ImageFasilitas4, ImageProfile, ImageZoom1 } from "@/assets/images";
+import { GedungAula, ImageBerita1, ImageBerita2, ImageBerita3, ImageFasilitas1, ImageFasilitas2, ImageFasilitas3, ImageFasilitas4, ImageProfile, ImageZoom1 } from "@/assets/images";
 import { FaBriefcase, FaBuilding, FaHands, FaRocket, FaUsers } from "react-icons/fa";
 
 export const DataVisiMisi = [
@@ -97,22 +97,70 @@ export const DataFasilitas = [
     {
       image: ImageFasilitas1,
       title: "Asrama Raja",
-      description: "PNPB KOMPUTER"
+      description: "PNPB KOMPUTER",
+      url : "fasilitas/asrama",
+      priceList : [
+        {
+          name : "Asrama",
+          price : "Rp.220.0000/hari"
+        }
+      ]
     },
     {
       image: ImageFasilitas2,
       title: "Ruang Kelas Raja",
-      description: "PNPB SALIHA"
+      description: "PNPB SALIHA",
+      url : "fasilitas/kelas",
+      priceList : [
+        {
+          name : "⁠Ruang kelas  lantai 2 (Raja Shaliha)",
+          price : "Rp.1.248.000/hari"
+        },
+        {
+          name : "Ruang kelas raja abdullah",
+          price : "Rp.2.056.000/hari"
+        }
+      ]
     },
     {
       image: ImageFasilitas3,
       title: "Laboratorium",
-      description: "PNPB KOMPUTER"
+      description: "PNPB KOMPUTER",
+      url : "fasilitas/laboratorium",
+      priceList : [
+        {
+          name : "⁠Laboratorium Komputer",
+          price : "Rp.2.056.000/hari"
+        }
+      ]
     },
     {
       image: ImageFasilitas4,
       title: "Ruang Makan",
-      description: "PNPB Aisyah Sulaiman"
+      description: "PNPB Aisyah Sulaiman",
+      url : "fasilitas/ruang-makan",
+      priceList : [
+        {
+          name : "Ruang makan (Aisyah Sulaiman) lantai 1",
+          price : "Rp.3.268.000/hari"
+        },
+        {
+          name : "Ruang makan (Aisyah Sulaiman) lantai 2",
+          price : "Rp.2.690.000/hari"
+        }
+      ]
+    },
+    {
+      image: GedungAula,
+      title: "Gedung Aula",
+      description: "PNPB Aisyah Sulaiman",
+      url : "fasilitas/aula",
+      priceList : [
+        {
+          name : "Aula Engku Haji Tua",
+          price : "Rp.3.878.0000/hari"
+        }
+      ]
     }
 ];
 

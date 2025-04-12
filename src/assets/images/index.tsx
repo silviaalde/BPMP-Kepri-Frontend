@@ -19,6 +19,7 @@ import ImageZoom1 from './Zoom1.jpeg'
 import ImageLogoBPMP from './BPMP Logo Layanan.png'
 import ImageLogoBMB from './Bangga Melayani Bangsa.png'
 import ImageLogoSempena from './Logo-Sempena.png'
+import ImageLogoSempenaWhite from './Logo-Sempena-White.png'
 import ImageLogoSP4N from './Logo-SP4NLAPOR.png'
 import ImageLogoSIPPN from './Logo-SIPPN.png'
 import ImageLogoPerpustkaan from './Logo-Perpustakaan.png'
@@ -44,6 +45,8 @@ import ImageStatistikPegawai from './statistik-pegawai.png'
 import ImagePlaceholder from './image-placeholder.png'
 import ImageWhatsapp from './WhatsApp.svg'
 import ImageZoom from './zoom-seeklogo.png'
+import GedungAula from './GedungAula.png'
+import BPMPLogo from './BPMP_Logo.png'
 
 export {
     ImageKepalaBPMP,
@@ -67,6 +70,7 @@ export {
     ImageLogoBPMP,
     ImageLogoBMB,
     ImageLogoSempena,
+    ImageLogoSempenaWhite,
     ImageLogoSP4N,
     ImageLogoSIPPN,
     ImageLogoPerpustkaan,
@@ -91,6 +95,8 @@ export {
     ImageStatistikPegawai,
     ImagePlaceholder,
     ImageWhatsapp,
-    ImageZoom
+    ImageZoom,
+    GedungAula,
+    BPMPLogo
 }
 

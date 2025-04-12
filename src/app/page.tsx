@@ -1,13 +1,12 @@
 'use client';
 
-import { BgBerlangganan, BgKepriMaju, BgMap, BgVisiMisi } from "@/assets/background";
-import { ImageKepalaBPMP, ImageLogoPerpustkaan, ImageLogoSelayar, ImageLogoSempena, ImageLogoSerasan, ImageLogoWBS, ImageProfile, ImageProgramPDM } from "@/assets/images";
+import { BgKepriMaju, BgMap, BgVisiMisi } from "@/assets/background";
+import { ImageKepalaBPMP, ImageLogoPerpustkaan, ImageLogoSelayar, ImageLogoSempena, ImageLogoSerasan, ImageLogoWBS, ImageProfile } from "@/assets/images";
 import Footer from "@/components/element/user/Footer";
 import Navbar from "@/components/element/user/Navbar/Navbar";
 import Image from "next/image";
-import {  FaArrowRight,  FaChevronRight,  FaFilePdf, FaPlay } from 'react-icons/fa';
+import {  FaArrowRight,  FaFilePdf, FaPlay } from 'react-icons/fa';
 import CardBerita from "@/components/element/user/card/CardBerita";
-import {  FaMessage, } from "react-icons/fa6";
 import CardWebinar from "@/components/element/user/card/CardWebinar";
 import ButtonToTop from "@/components/element/user/button/ButtonToTop";
 import WhatsappButton from "@/components/element/user/button/ButtonWhatsapp";
@@ -16,13 +15,14 @@ import BannerSlider from "@/components/element/user/slider/BannerSlider";
 import TestimoniSlider from "@/components/element/user/slider/TestimoniSlider";
 import Link from "next/link";
 //import CardProgramPDM from "@/components/element/user/card/CardProgramPDM";
-import { DataPDM } from "@/data/data-pdm";
-import { DataVisiMisi, DataPublicStats, DataFasilitas, DataWebinar } from "@/data/data-home";
+import { DataVisiMisi, DataPublicStats, DataFasilitas } from "@/data/data-home";
 import ButtonUnduhanDoc from "@/components/element/user/button/ButtonUnduhanDoc";
 import CardPublicStats from "@/components/element/user/card/cardPublicStats";
 import { useEffect, useState } from "react";
-import { Blog, Unduhan } from "@/services/api";
+import { Blog, storageUrl, Unduhan, Webinar } from "@/services/api";
 import { programList, ProgramList } from "@/data/data-program";
+import Script from "next/script";
+import { WebinarType } from "@/data/data-webinar";
 
 
 interface File {
@@ -53,6 +53,8 @@ export interface BeritaProps {
   category? : string;
 }
 
+const month = ['JAN','FEB','MAR', 'APR', 'MEI', 'JUN', 'JUL', 'AGU', 'SEP', 'OKT', 'NOV', 'DES'];
+
 
 
 
@@ -61,7 +63,7 @@ export default function Home() {
     const [dataBerita, setDataBerita] = useState<BeritaProps[] | null>(null);
     //const DataProgramPDMUtama = DataPDM.filter((item) => item.category === "Utama");
     const [getProgram, setProgram ] = useState<ProgramList|null>(programList[0]);
-
+    const [dataWebinar, setDataWebinar] = useState<WebinarType[]|null>(null);
 
   const fetchDataUnduhan = async () => {
     try {
@@ -81,15 +83,21 @@ export default function Home() {
       console.log(error);
     }
   }
+
+  const fetchDataWebinar = async ()=>{
+    const response = await Webinar.getWebinar({limit : 2});
+    setDataWebinar(response?.data.data);
+  }
+
     useEffect(() => {
-    
+      fetchDataWebinar();
       fetchDataUnduhan();
       fetchDataBerita();
     }, []);
 
     const DataAplikasi = [
       { 
-        name : "Sampena", 
+        name : "Sempena", 
         image : ImageLogoSempena, 
         Link : "/",
         ref : "internal" 
@@ -120,7 +128,9 @@ export default function Home() {
 
 
     return (
-      <div className="bg-gray-100 w-full min-h-screen h-max relative">
+      <div className="overflow-x-hidden bg-gray-100 w-full min-h-screen h-max relative">
+                <Script src="https://cdn.userway.org/widget.js" data-account="FcZSy6pC1a"
+                    strategy="afterInteractive"></Script>
         <Navbar />
         {/* Banner */}
         <BannerSlider />
@@ -253,7 +263,9 @@ export default function Home() {
                     className="h-full w-full bg-[#7CD4FD] z-20 rounded-full center-flex text-white group-hover:bg-white group-hover:text-[#7CD4FD]"
                     
                   >
-                    <FaPlay />
+                    <Link href={"https://www.youtube.com/watch?v=7Ozf6Kr4iPc"}>
+                      <FaPlay />
+                    </Link>
                   </div>
                 </div>
                 <p className="text-white text-4xl md:text-7xl font-semibold z-10 uppercase tracking-wider">
@@ -262,7 +274,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="h-max min-h-[550px] w-full bg-[#7CD4FD] center-flex md:mb-10 mb-0">
+          {/* <div className="h-max min-h-[550px] w-full bg-[#7CD4FD] center-flex md:mb-10 mb-0">
             <div className="container h-full grid grid-cols-1 md:grid-cols-3 min-h-[550px]">
               <div className="relative w-full h-[500px] md:h-full">
                 <Image src={ImageProgramPDM} alt="sample" className="h-full w-full object-cover  absolute top-[-80px]" />
@@ -285,7 +297,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>  
 
         {/* Program Prioritas PDM */}
@@ -294,18 +306,16 @@ export default function Home() {
             <div className="flex items-center justify-between md:flex-row flex-col gap-4">
               <SectionTitle 
                 title="Jelajahi"
-                heading="PROGRAM PRIORITAS KEMENDIKBUDRISTEK"
+                heading="PROGRAM PRIORITAS KEMENDIKDASMEN"
                 alignItems="items-start"
               />
-              <div className="flex items-center justify-end md:w-max w-full">
+              <div className="hidden md:flex items-center justify-end md:w-max w-full">
                 <Link href="/program-prioritas-pdm" >
-                  <button className="px-6 h-16 text-white bg-yellow-400 hover:bg-red-primary text-sm font-medium">
-                    Lihat Selengkapnya
-                  </button>
+                 
                 </Link>
               </div>
             </div>
-            <div className="flex item-start gap-1" >
+            <div className="flex flex-col md:flex-row item-start gap-1 " >
               {
                 programList.map((item )=>(
                   <button className="text-blue-500 bg-yellow-400 p-3 font-bold" key={item.id} onClick={()=>setProgram(item)}>
@@ -318,17 +328,17 @@ export default function Home() {
             <div className="w-full flex flex-col gap-2 p-7 bg-white">
               <h1 className="text-blue-500 font-bold text-2xl">Layanan {getProgram?.name?? ""}</h1>
               <hr />
-              <div className="grid grid-cols-3 gap-x-4">
-                <div className="w-full pt-2 ">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-x-4">
+                <div className="w-full pt-2 h-[50vh] md:h-auto">
                   <iframe className="w-full h-full" src="https://www.youtube.com/embed/usPBMKJMt6s" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ></iframe>
                 </div>
-                <div className="w-full col-span-2 grid grid-cols-3 mt-2 gap-x-3 gap-y-2" >
+                <div className="w-full col-span-2 grid grid-cols-1 md:grid-cols-3 mt-2 gap-x-3 gap-y-2" >
             
                   {
 
                     getProgram?.services?.map((item)=>(
                       <a 
-                      className= "bg-blue-500 p-3 text-yellow-300 rounded min-h-20 font-bold"
+                      className= "bg-[#7CD4FD] p-3 text-blue-800 rounded min-h-20 font-bold"
                       key={item.id} 
                       href={item.link??""}>
                         {item.id?? ""}. {item.service_name??""}
@@ -359,24 +369,24 @@ export default function Home() {
             heading="Fasilitas Kami"
           />
          
-          <div className="h-max  grid grid-cols-4 gap-10">
+          <div className="h-max  grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-10">
               {DataFasilitas.map((item, index) => (
                 <div 
                   key={index} 
-                  className={`flex items-${index % 2 === 0 ? 'start' : 'end'} justify-start h-[500px] text-white`}
+                  className={`flex items-${index % 2 === 0 ? 'start' : 'end'} justify-start h-[350px] md:h-[500px] text-white`}
                 >
-                  <div className="w-full h-[470px] center-flex relative group cursor-pointer">
+                  <div className="w-full h-[300px] md:h-[470px] center-flex relative group cursor-pointer">
                     <Image src={item.image} alt="sample" className="w-full h-full object-cover" />
-                    <div className="bg-[#7cd4fda4] absolute top-6 bottom-6 right-6 left-6 py-5 px-3 group-hover:flex hidden flex-col items-center justify-between">
+                    <Link href={`${item.url ?? ""}`} className="bg-[#7cd4fda4] absolute top-6 bottom-6 right-6 left-6 py-5 px-3 group-hover:flex hidden flex-col items-center justify-between">
                       <div className="h-14 w-14 rounded-full border center-flex hover:transform hover:rotate-45 transition-transform duration-300 ease-in-out">
                         <FaArrowRight />
                       </div>
                       <div className="flex flex-col items-center font-medium gap-5 uppercase">
                         <p className="text-sm">PNPB</p>
                         <p className="text-lg">{item.title}</p>
-                        <p className="text-sm">{item.description}</p>
+                        {/* <p className="text-sm">{item.description}</p> */}
                       </div>
-                    </div>
+                    </Link>
                   </div>
                 </div>
               ))}
@@ -401,20 +411,24 @@ export default function Home() {
           <div className="container h-full grid grid-cols-1 lg:grid-cols-2 gap-8 py-20">
             <div className="h-full flex flex-col gap-7">
               <SectionTitle 
+                useLine={false}
+                headingClassName=""
                 title="PNBP"
                 heading="Ikuti Kegiatan dan Webinar Terdekat"
                 alignItems="items-start"
               />
               <div className="flex flex-col gap-2">
-                {DataWebinar.map((items, index) => (
+                {dataWebinar?.map((items, index) => (
                   <CardWebinar 
+                    description={items.description??""}
+                    url={items.url??""}
                     key={index}
-                    date={items.date}
-                    month={items.month}
-                    location={items.location}
-                    title={items.location}
-                    image={items.image}
-                    time={items.time}
+                    date={items.date?.substring(8,10)??""}
+                    month={month[parseInt(items.date?.substring(5,7)??"1")-1]}
+                    location={items.location??""}
+                    title={items.title??""}
+                    image={ storageUrl + "/storage/content/webinar/" + items.image}
+                    time={items.time_start??"" + "-" + items.time_end??""}
                   />
                 ))}
               </div>
@@ -461,7 +475,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="h-max lg:h-[200px] w-full center-flex mb-[-280px]  lg:mb-[-180px]">
+          {/* <div className="h-max lg:h-[200px] w-full center-flex mb-[-280px]  lg:mb-[-180px]">
             <div className="container h-full bg-blue-light relative flex items-center justify-center lg:justify-between lg:flex-row flex-col px-5 md:px-10 py-10 lg:gap-0 gap-10 text-white">
               <Image src={BgBerlangganan} className="absolute bottom-0 right-0 h-full w-full opacity-20 object-cover" alt="bg-berlangganan" />
               <div className="flex items-center lg:flex-row flex-col  gap-6 z-10 w-full">
@@ -482,7 +496,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </section>
 
         {/* Berita */}

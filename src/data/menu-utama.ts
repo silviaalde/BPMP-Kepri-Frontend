@@ -35,5 +35,5 @@ export const MenuUtama = [
         ],
     },
     { title: 'Survey', url: '/survei-kepuasan-masyarakat' },
-    { title: 'Fax', url: '/fax' },
+    { title: 'FAQ', url: '/faq' },
 ];

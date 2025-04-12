@@ -58,7 +58,7 @@ const Page = () => {
                         <div className="h-max container flex lg:flex-row flex-col gap-7">
                             <div className="flex flex-1 flex-col gap-8">
                                 <Image 
-                                    src={data?.image}
+                                    src={"https://bpmp-kepri-backend.my.id"+data?.image}
                                     alt={`imag ${data?.title}`}
                                     width={600}
                                     height={300}

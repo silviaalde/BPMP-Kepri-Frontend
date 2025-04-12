@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import SidebarModal from "../sidebar/SidebarModals";
 import SidebarMenu from "../sidebar/SidebarMenu";
 import { MenuPPID } from "@/data/menu-ppid";
+import Link from "next/link";
 
 const NavbarPPID = () => {
     const [sidebarIsActive, setSidebarIsActive] = useState<boolean>(false);
@@ -33,7 +34,9 @@ const NavbarPPID = () => {
         <div className={` ${isScrolled ? 'fixed top-0 left-0 right-0 bg-blue-secondary z-50 shadow-xl' : 'bg-blue-primary'} 
         w-full h-max min-h-20  px-3 md:px-10 flex items-center justify-between gap-10 py-4`}>
             <div className="flex items-center lg:justify-start justify-between lg:w-max w-full">
-                <Image src={ImageLogoBPMP1} className="h-10 w-72" alt="Logo BPMP" />
+                <Link href="/">
+                    <Image src={ImageLogoBPMP1} className="h-10 w-72" alt="Logo BPMP" />
+                </Link>
                 
                 {/* Triger sidebar menu */}
                 <FaBars 

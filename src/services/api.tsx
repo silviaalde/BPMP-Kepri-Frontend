@@ -1,6 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 
 const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+export const storageUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
 const handleRequest = async (request: Promise<AxiosResponse>) => {
     try {
@@ -25,6 +26,11 @@ export const Auth = {
 };
 
 export const Blog = {
+    GetBerita:(params? : {limit? : number}) =>
+        handleRequest(
+            axios.get(`${baseUrl}/berita${params?"?limit="+params.limit : ""}`)
+        ),
+
     GetBlog: (params: BlogQueryParams = {}) =>
         handleRequest(
             axios.get(`${baseUrl}/blog`, { params })
@@ -275,6 +281,67 @@ export const Progress = {
             }
         )),
     
+}
+
+
+export const Testimoni = {
+    getTestimoni : (data? : {id:string}|null) => handleRequest(
+        axios.get(`${baseUrl}/testimoni?${data?.id != null?"id="+data.id : ""}`)
+    ),
+
+    addTestimoni :  ( token:string, data : FormData) => handleRequest(
+        axios.post(`${baseUrl}/testimoni`, data ,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        ) 
+    ),
+
+    updateTestimoni : (token:string , data : FormData) => handleRequest(
+        axios.put(`${baseUrl}/testimoni`, data,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        )
+    ),
+
+    dropTestimoni : (token:string,id : string) => handleRequest(
+        axios.delete(`${baseUrl}/testimoni?id=${id}`,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        )
+    )
+}
+
+
+const Header = (token:string)=>{
+    return {
+        headers : {
+            Authorization : `Bearer ${token}`
+        }
+    }
+};
+
+
+export const Webinar = {
+    getWebinar : (data? : {id? : string, limit? : number})=> 
+        handleRequest(axios.get(`${baseUrl}/webinar?${data?.id ? "&id="+data.id : ""}${data?.limit ? "&limit="+data.limit: ""}`)),
+
+    addWebinar : (token:string,data:FormData)=>
+        handleRequest(axios.post(`${baseUrl}/webinar`, data, Header(token))),
+
+    updateWebinar : (token : string, data:object)=>
+        handleRequest(axios.put(`${baseUrl}/webinar`, data, Header(token))),
+
+    dropWebinar : (token : string, id : string)=>
+        handleRequest(axios.delete(`${baseUrl}/webinar?id=${id}`, Header(token)))
 }
 
 export const Stats = {

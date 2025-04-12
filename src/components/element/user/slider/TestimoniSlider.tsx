@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -8,42 +8,26 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { ImageProfile } from "@/assets/images";
+import { Testimoni } from "@/services/api";
 import { BgTestimoni } from "@/assets/background";
 
-const DataTestimoni = [
-  { 
-    company: "Baznas Kabupaten Bintan", 
-    name: "Deni Triyanto", 
-    profile: ImageProfile, 
-    content: "Fasilitas yang sudah ada sangat bagus jadi harus lebih di tingkatkan lagi promosi nya, karena banyak lembaga yang membutuhkan fasilitas lengkap seperti BPMP, selain fasilitas nya lengkap harga nya terjangkau" 
-  },
-  { 
-    company: "Staf Perencanaan, Admin Dapodik", 
-    name: "Eko Rohadi Setyobudi, S.Kom", 
-    profile: ImageProfile, 
-    content: "Sudah Cukup baik, Pertahnkan dan tingkatkann" 
-  },
-  { 
-    company: "Staf Perencanaan, Admin Dapodik", 
-    name: "Eko Rohadi Setyobudi, S.Kom", 
-    profile: ImageProfile, 
-    content: "Sudah Cukup baik, Pertahnkan dan tingkatkann" 
-  },
-  { 
-    company: "Staf Perencanaan, Admin Dapodik", 
-    name: "Eko Rohadi Setyobudi, S.Kom", 
-    profile: ImageProfile, 
-    content: "Sudah Cukup baik, Pertahnkan dan tingkatkann" 
-  },
-  { 
-    company: "Staf Perencanaan, Admin Dapodik", 
-    name: "Eko Rohadi Setyobudi, S.Kom", 
-    profile: ImageProfile, 
-    content: "Sudah Cukup baik, Pertahnkan dan tingkatkann" 
-  },
-];
 
 const TestimoniSlider = () => {
+    const [testimoni, setTestimoni] = useState<{
+        name:string
+        title : string,
+        content : string
+    }[]|null>(null);
+
+    useEffect(()=>{
+        Testimoni.getTestimoni().then((res)=>{
+            console.log(res);
+            if(res.status == 200){
+                setTestimoni(res.data.data);
+            }
+        });
+    },[]);
+
     return (
         <div className="w-full h-max">
             <Swiper
@@ -62,7 +46,8 @@ const TestimoniSlider = () => {
                 navigation={true}
                 modules={[Navigation, Pagination, Autoplay]}
             >
-                {DataTestimoni.map((testimonial, index) => (
+                {testimoni ? 
+                testimoni.map((testimonial, index) => (
                     <SwiperSlide key={index}>
                         <div className="bg-white shadow-lg flex flex-col gap-8 p-10 relative">
                             <Image 
@@ -72,12 +57,12 @@ const TestimoniSlider = () => {
                             />
                             <div className="w-full h-20 z-10 flex items-center gap-5">
                                 <Image 
-                                    src={testimonial.profile} 
+                                    src={ImageProfile} 
                                     alt="Profile" 
                                     className="h-20 w-20 object-cover" 
                                 />
                                 <div className="flex flex-col">
-                                    <p className="text-xs">{testimonial.company}</p>
+                                    <p className="text-xs">{testimonial.title}</p>
                                     <h2 className="text-blue-light font-semibold text-lg">{testimonial.name}</h2>
                                 </div>
                             </div>
@@ -87,7 +72,9 @@ const TestimoniSlider = () => {
                             </p>
                         </div>
                     </SwiperSlide>
-                ))}
+                )):
+                <div></div>
+            }
             </Swiper>
         </div>
   ) ;

@@ -32,7 +32,7 @@ const CardBlog = ({
             {/* Menampilkan gambar jika image adalah URL string */}
             {typeof image === "string" ? (
                 <Image
-                    src={image} // Menggunakan URL string dari backend
+                    src={`https://bpmp-kepri-backend.my.id/${image.replace(/^\/+/, '')}`} // Menggunakan URL string dari backend
                     alt={`images ${title}`}
                     className="h-[250px] md:h-[340px] lg:h-[370px] w-full object-cover"
                     width={700}
